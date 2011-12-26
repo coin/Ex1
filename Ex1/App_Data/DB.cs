@@ -231,58 +231,6 @@ namespace Samples.AspNet.ObjectDataSource
             return result;
         }
 
-
-        // Update the Employee by original ID.
-
-        //public int UpdateEmployee(int EmployeeID, string LastName, string FirstName,
-        //                          string Address, string City, string Region, string PostalCode)
-        //{
-        //    if (String.IsNullOrEmpty(FirstName))
-        //        throw new ArgumentException("FirstName cannot be null or an empty string.");
-        //    if (String.IsNullOrEmpty(LastName))
-        //        throw new ArgumentException("LastName cannot be null or an empty string.");
-
-        //    if (Address == null) { Address = String.Empty; }
-        //    if (City == null) { City = String.Empty; }
-        //    if (Region == null) { Region = String.Empty; }
-        //    if (PostalCode == null) { PostalCode = String.Empty; }
-
-        //    MySqlConnection conn = new MySqlConnection(_connectionString);
-        //    MySqlCommand cmd = new MySqlCommand("UPDATE Employees " +
-        //                                        "  SET FirstName=@FirstName, LastName=@LastName, " +
-        //                                        "  Address=@Address, City=@City, Region=@Region, " +
-        //                                        "  PostalCode=@PostalCode " +
-        //                                        "  WHERE EmployeeID=@EmployeeID", conn);
-
-        //    cmd.Parameters.Add("@FirstName", MySqlDbType.VarChar, 10).Value = FirstName;
-        //    cmd.Parameters.Add("@LastName", MySqlDbType.VarChar, 20).Value = LastName;
-        //    cmd.Parameters.Add("@Address", MySqlDbType.VarChar, 60).Value = Address;
-        //    cmd.Parameters.Add("@City", MySqlDbType.VarChar, 15).Value = City;
-        //    cmd.Parameters.Add("@Region", MySqlDbType.VarChar, 15).Value = Region;
-        //    cmd.Parameters.Add("@PostalCode", MySqlDbType.VarChar, 10).Value = PostalCode;
-        //    cmd.Parameters.Add("@EmployeeID", MySqlDbType.Int32).Value = EmployeeID;
-
-        //    int result = 0;
-
-        //    try
-        //    {
-        //        conn.Open();
-
-        //        result = cmd.ExecuteNonQuery();
-        //    }
-        //    catch (MySqlException e)
-        //    {
-        //        // Handle exception.
-        //    }
-        //    finally
-        //    {
-        //        conn.Close();
-        //    }
-
-        //    return result;
-        //}
-
-
         // Insert an Employee.
 
         public int InsertEmployee(string LastName, string FirstName,
@@ -394,6 +342,56 @@ namespace Samples.AspNet.ObjectDataSource
             return result;
         }
 
+
+        // Update the Employee by original ID.
+
+        public int UpdateEmployee(int EmployeeID, string LastName, string FirstName,
+                                  string Address, string City, string Region, string PostalCode)
+        {
+            if (String.IsNullOrEmpty(FirstName))
+                throw new ArgumentException("FirstName cannot be null or an empty string.");
+            if (String.IsNullOrEmpty(LastName))
+                throw new ArgumentException("LastName cannot be null or an empty string.");
+
+            if (Address == null) { Address = String.Empty; }
+            if (City == null) { City = String.Empty; }
+            if (Region == null) { Region = String.Empty; }
+            if (PostalCode == null) { PostalCode = String.Empty; }
+
+            MySqlConnection conn = new MySqlConnection(_connectionString);
+            MySqlCommand cmd = new MySqlCommand("UPDATE Employees " +
+                                                "  SET FirstName=@FirstName, LastName=@LastName, " +
+                                                "  Address=@Address, City=@City, Region=@Region, " +
+                                                "  PostalCode=@PostalCode " +
+                                                "  WHERE EmployeeID=@EmployeeID", conn);
+
+            cmd.Parameters.Add("@FirstName", MySqlDbType.VarChar, 10).Value = FirstName;
+            cmd.Parameters.Add("@LastName", MySqlDbType.VarChar, 20).Value = LastName;
+            cmd.Parameters.Add("@Address", MySqlDbType.VarChar, 60).Value = Address;
+            cmd.Parameters.Add("@City", MySqlDbType.VarChar, 15).Value = City;
+            cmd.Parameters.Add("@Region", MySqlDbType.VarChar, 15).Value = Region;
+            cmd.Parameters.Add("@PostalCode", MySqlDbType.VarChar, 10).Value = PostalCode;
+            cmd.Parameters.Add("@EmployeeID", MySqlDbType.Int32).Value = EmployeeID;
+
+            int result = 0;
+
+            try
+            {
+                conn.Open();
+
+                result = cmd.ExecuteNonQuery();
+            }
+            catch (MySqlException e)
+            {
+                // Handle exception.
+            }
+            finally
+            {
+                conn.Close();
+            }
+
+            return result;
+        }
 
         // Update the Employee by original ID.
 
