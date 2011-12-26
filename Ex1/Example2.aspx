@@ -31,12 +31,9 @@
     <asp:ObjectDataSource ID="ObjectDataSourceEmployees" 
         runat="server" 
         TypeName="Samples.AspNet.ObjectDataSource.NorthwindData"
-       
         SelectMethod="GetAllEmployees"
         InsertMethod="InsertEmployee"
         UpdateMethod="UpdateEmployee"
         DeleteMethod="DeleteEmployee">
-    </asp:ObjectDataSource>
-    <asp:ObjectDataSource ID="ObjectDataSourceEmployeeDetail" runat="server">
     </asp:ObjectDataSource>
 </asp:Content>
